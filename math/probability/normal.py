@@ -43,8 +43,6 @@ class Normal:
         mean = self.mean
         stddev = self.stddev
         value = (x - mean) / (stddev * (2 ** 0.5))
-        erf = (2 / (pi ** 0.5)) * (value - (value ** 3) / 3 +
-                                    (value ** 5) / 10 -
-                                    (value ** 7) / 42 +
-                                    (value ** 9) / 216)
+        erf = value - value**3/3 + value**5/10 - value**7/42 + value**9/216
+        erf = (2 / pi**0.5) * erf
         return (1 + erf) / 2
