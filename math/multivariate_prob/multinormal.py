@@ -24,10 +24,9 @@ class MultiNormal:
         d = self.mean.shape[0]
         if x.shape != (d, 1):
             raise ValueError("x must have the shape ({}, 1)".format(d))
-        pi = 3.1415926536
         det = np.linalg.det(self.cov)
         inv = np.linalg.inv(self.cov)
         diff = x - self.mean
-        coef = 1 / (((2 * pi) ** d * det) ** 0.5)
+        coef = 1 / (((2 * np.pi) ** d * det) ** 0.5)
         exp = np.exp(-0.5 * np.dot(np.dot(diff.T, inv), diff))
         return float(coef * exp)
