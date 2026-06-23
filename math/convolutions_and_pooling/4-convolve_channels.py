@@ -13,8 +13,10 @@ def convolve_channels(images, kernel, padding='same', stride=(1, 1)):
         pw = int(np.ceil((kw - 1) / 2))
     elif padding == 'valid':
         ph, pw = 0, 0
-    else:
+    elif isinstance(padding, tuple):
         ph, pw = padding
+    else:
+        ph, pw = 0, 0
     images = images.astype('float64')
     padded = np.pad(images, ((0, 0), (ph, ph), (pw, pw), (0, 0)),
                     mode='constant')
